@@ -53,3 +53,5 @@ coverage.xml
 docs/_build/
 
 GoogleNews-vectors-negative300-SLIM.bin
+
+.DS_Store

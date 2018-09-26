@@ -15,11 +15,17 @@ spec:
       containers:
       - name: embedding-api
         # Replace [GCLOUD_PROJECT] with your project ID or use `make template`.
-        image: gcr.io/[GCLOUD_PROJECT]/embedding-api
+        image: gcr.io/spacer-184617/word2vec-api-slim
         # This setting makes nodes pull the docker image every time before
         # starting the pod. This is useful when debugging, but should be turned
         # off in production.
         imagePullPolicy: Always
+        livenessProbe:
+          httpGet:
+            path: /word2vec/n_similarity?ws1=Sushi&ws1=Shop&ws2=Japanese&ws2=Restaurant
+            port: 5000
+          initialDelaySeconds: 30
+          periodSeconds: 5
         ports:
         - name: http-server
           containerPort: 5000
